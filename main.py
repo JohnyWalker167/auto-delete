@@ -3,6 +3,9 @@ from pyromod import listen
 from pyrogram.errors import FloodWait
 from pyrogram import Client, filters, enums
 from pyrogram import idle
+from asyncio import get_event_loop
+
+loop = get_event_loop()
 
 user = Client(
                 "userbot",
