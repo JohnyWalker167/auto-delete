@@ -2,15 +2,29 @@ from config import *
 from pyromod import listen
 from pyrogram.errors import FloodWait
 from pyrogram import Client, filters, enums
+from pyrogram import idle
 
-
-app = Client(
+user = Client(
                 "userbot",
                 api_id=int(API_ID),
                 api_hash=API_HASH,
                 session_string=STRING_SESSION,
                 no_updates = True
 )
+
+
+app = Client(
+    "my_bot",
+      api_id=API_ID,
+      api_hash=API_HASH, 
+      bot_token=BOT_TOKEN, 
+      workers=1000, 
+      parse_mode=enums.ParseMode.HTML
+)
+
+async def main():
+    async with app, user:
+        await idle()
 
 @app.on_message(filters.command("delete") & filters.user(OWNER_USERNAME))
 async def delete_command(client, message):
@@ -32,4 +46,7 @@ async def delete_command(client, message):
     except Exception as e:
         logger.error(f"Error : {e}")
 
-app.run()
+if __name__ == "__main__":
+    logger.info("Bot is starting...")
+    loop.run_until_complete(main())
+    logger.info("Bot has stopped.")
