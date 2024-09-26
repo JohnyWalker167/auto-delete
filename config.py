@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import logging
 from logging.handlers import RotatingFileHandler
 from os import environ
-from requests import get as rget
+
 
 LOG_FILE_NAME = "log.txt"
 
